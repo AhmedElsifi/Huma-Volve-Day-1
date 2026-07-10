@@ -41,6 +41,17 @@ fs.readFile("notes.txt", "utf8", (error, data) => {
 
 // ======================================================
 // Method 3
+fs.appendFile("notes.txt", "\n and I'm a third year CS student", (error) => {
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  console.log("Text Added");
+});
+
+// fs.appendFile(<file-path>,<content-to-add>,<callback-fn>);
+// used to append "add" some content to the end of an existing file, or create a new file if no file exists
 
 // ======================================================
 // Method 4
