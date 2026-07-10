@@ -150,6 +150,26 @@ const server = http.createServer((request, result) => {
     return;
   }
 
+  // GET Student By ID
+  if (request.url.startsWith("/student") && request.method === "GET") {
+    const url = new URL(request.url, "http://localhost:3000");
+
+    const id = Number(url.searchParams.get("id"));
+
+    const student = students.find((s) => s.id === id);
+
+    if (!student) {
+      result.statusCode = 404;
+      return result.end(
+        JSON.stringify({
+          message: "Student not found",
+        }),
+      );
+    }
+
+    return result.end(JSON.stringify(student));
+  }
+
   result.statusCode = 404;
   result.end(
     JSON.stringify({
